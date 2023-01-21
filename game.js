@@ -20,19 +20,16 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
         // Tie
-        // return "It's a tie!";
         return Outcomes.tie;
     }
     if (playerSelection === "rock" && computerSelection === "paper" 
         || playerSelection === "paper" && computerSelection === "scissors"
         || playerSelection === "scissors" && computerSelection === "rock") {
         // Player lose
-        // return `You lose! ${computerSelection} beats ${playerSelection}`;
         return Outcomes.lose;
     }
 
     // Player win
-    // return `You win! ${playerSelection} beats ${computerSelection}`;
     return Outcomes.win;
 }
 
