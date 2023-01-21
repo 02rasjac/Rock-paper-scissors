@@ -1,5 +1,10 @@
 const choices = ["rock", "paper", "scissors"];
 const nChoices = choices.length;
+const Outcomes = Object.freeze({
+    lose: Symbol("lose"),
+    win: Symbol("win"),
+    tie: Symbol("tie")
+});
 
 function getComputerChoice() {
     let index = Math.floor(Math.random() * nChoices);
@@ -15,23 +20,42 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
         // Tie
-        return "It's a tie!";
+        // return "It's a tie!";
+        return Outcomes.tie;
     }
     if (playerSelection === "rock" && computerSelection === "paper" 
         || playerSelection === "paper" && computerSelection === "scissors"
         || playerSelection === "scissors" && computerSelection === "rock") {
         // Player lose
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
+        // return `You lose! ${computerSelection} beats ${playerSelection}`;
+        return Outcomes.lose;
     }
 
     // Player win
-    return `You win! ${playerSelection} beats ${computerSelection}`;
+    // return `You win! ${playerSelection} beats ${computerSelection}`;
+    return Outcomes.win;
 }
 
 function game(nRounds = 5) {
     for (; nRounds > 0; nRounds--) {
         let playerSelection = prompt("What's your choices? (rock, paper, scissors)");
-        console.log(playRound(playerSelection, getComputerChoice()));
+        let computerSelection = getComputerChoice();
+        let outcome = playRound(playerSelection, computerSelection);
+        switch (outcome) {
+            case Outcomes.lose:
+                console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+                break;
+            case Outcomes.win:
+                console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+                break;
+            case Outcomes.tie:
+                console.log("It's a tie!");
+                break;
+            default:
+                console.log(outcome);
+                break;
+        }
+        console.log();
     }
 }
 
