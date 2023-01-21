@@ -27,3 +27,12 @@ function playRound(playerSelection, computerSelection) {
     // Player win
     return `You win! ${playerSelection} beats ${computerSelection}`;
 }
+
+function game(nRounds = 5) {
+    for (; nRounds > 0; nRounds--) {
+        let playerSelection = prompt("What's your choices? (rock, paper, scissors)");
+        console.log(playRound(playerSelection, getComputerChoice()));
+    }
+}
+
+game();
