@@ -9,6 +9,10 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
 
+    if (choices.indexOf(playerSelection) < 0) {
+        return "Not a valid choice";
+    }
+
     if (playerSelection === computerSelection) {
         // Tie
         return "It's a tie!";
