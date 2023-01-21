@@ -12,8 +12,6 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-
     if (choices.indexOf(playerSelection) < 0) {
         return "Not a valid choice";
     }
@@ -38,7 +36,7 @@ function game(nRounds = 5) {
     let computerScore = 0;
 
     for (; nRounds > 0; nRounds--) {
-        let playerSelection = prompt("What's your choices? (rock, paper, scissors)");
+        let playerSelection = prompt("What's your choices? (rock, paper, scissors)").toLowerCase();
         let computerSelection = getComputerChoice();
         let outcome = playRound(playerSelection, computerSelection);
 
