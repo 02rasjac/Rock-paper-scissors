@@ -37,16 +37,22 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(nRounds = 5) {
+    let playerScore = 0;
+    let computerScore = 0;
+
     for (; nRounds > 0; nRounds--) {
         let playerSelection = prompt("What's your choices? (rock, paper, scissors)");
         let computerSelection = getComputerChoice();
         let outcome = playRound(playerSelection, computerSelection);
+
         switch (outcome) {
             case Outcomes.lose:
                 console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+                computerScore++;
                 break;
             case Outcomes.win:
                 console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+                playerScore++;
                 break;
             case Outcomes.tie:
                 console.log("It's a tie!");
@@ -55,7 +61,13 @@ function game(nRounds = 5) {
                 console.log(outcome);
                 break;
         }
-        console.log();
+    }
+
+    if (playerScore === computerScore) {
+        console.log(`It's a tie with both scoring ${playerScore}!`);
+    }
+    else {
+        console.log(`The winner is ${playerScore > computerScore ? 'You' : 'Computer'}! The total score is ${playerScore}:${computerScore} (you:computer)!`);
     }
 }
 
