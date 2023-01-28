@@ -34,6 +34,10 @@ body {
     transform: translate(0, -5px);
 }
 
+#results {
+    width: 13vw;
+}
+
 #score {
     display: flex;
     gap: 20px;
@@ -42,4 +46,5 @@ body {
 
 #round-result {
     font-weight: bold;
+    text-align: center;
 }
