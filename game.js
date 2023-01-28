@@ -40,6 +40,10 @@ function compareChoices(playerSelection, computerSelection) {
 }
 
 function playRound(e) {
+  if (playerScore >= 5 || computerScore >= 5) {
+    return;
+  }
+
   let playerSelection = e.target.dataset.choice;
   let computerSelection = getComputerChoice();
   let outcome = compareChoices(playerSelection, computerSelection);
@@ -63,4 +67,10 @@ function playRound(e) {
 
   playerScoreDisplay.textContent = playerScore;
   computerScoreDisplay.textContent = computerScore;
+
+  if (playerScore === 5) {
+    roundResult.textContent = 'You won the game!';
+  } else if (computerScore === 5) {
+    roundResult.textContent = 'You lost the game!';
+  }
 }
