@@ -13,7 +13,29 @@ let roundResult = document.querySelector('#round-result');
 let playerScoreDisplay = document.querySelector('#player span');
 let computerScoreDisplay = document.querySelector('#computer span');
 
-document.querySelectorAll('button').forEach((item) => item.addEventListener('click', playRound));
+document.querySelectorAll('[data-choice]').forEach((item) => item.addEventListener('click', playRound));
+document.querySelector('#reset').addEventListener('click', reset);
+
+// ====
+// MAIN
+// ====
+reset();
+displayScore();
+// ========
+// END MAIN
+// ========
+
+function reset() {
+  playerScore = 0;
+  computerScore = 0;
+  roundResult.textContent = 'Choose your weapon!';
+  displayScore();
+}
+
+function displayScore() {
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
+}
 
 function getComputerChoice() {
   let index = Math.floor(Math.random() * nChoices);
@@ -65,8 +87,7 @@ function playRound(e) {
       break;
   }
 
-  playerScoreDisplay.textContent = playerScore;
-  computerScoreDisplay.textContent = computerScore;
+  displayScore();
 
   if (playerScore === 5) {
     roundResult.textContent = 'You won the game!';

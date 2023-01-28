@@ -13,16 +13,9 @@ body {
     background-color: rgb(41, 41, 41);
 }
 
-#choices button {
-    line-height: 50px;
-    font-size: large;
-    font-weight: bold;
-    text-transform: uppercase;
+button {
     text-align: center;
     background-color: rgb(56, 56, 56);
-    width: 130px;
-    height: 50px;
-    margin-left: 20px;
     border: none;
     border-bottom: 2px solid rgb(48, 48, 48);
     border-right: 2px solid rgb(48, 48, 48);
@@ -30,8 +23,22 @@ body {
     transition: 100ms;
 }
 
-#choices button:hover {
-    transform: translate(0, -5px);
+#reset {
+    padding: 5px 15px;
+}
+
+#choices button {
+    line-height: 50px;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 130px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+button:hover {
+    transform: translate(0, -3px);
 }
 
 #results {
