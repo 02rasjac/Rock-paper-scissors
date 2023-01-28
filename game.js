@@ -13,20 +13,19 @@ let roundResult = document.querySelector('#round-result');
 let playerScoreDisplay = document.querySelector('#player span');
 let computerScoreDisplay = document.querySelector('#computer span');
 
-document.querySelectorAll('button').forEach((item) => item.addEventListener('click', game));
+document.querySelectorAll('button').forEach((item) => item.addEventListener('click', playRound));
 
 function getComputerChoice() {
   let index = Math.floor(Math.random() * nChoices);
   return choices[index];
 }
 
-function playRound(playerSelection, computerSelection) {
+function compareChoices(playerSelection, computerSelection) {
   if (choices.indexOf(playerSelection) < 0) {
     return 'Not a valid choice';
   }
 
   if (playerSelection === computerSelection) {
-    // Tie
     return Outcomes.tie;
   }
   if (
@@ -34,18 +33,16 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === 'paper' && computerSelection === 'scissors') ||
     (playerSelection === 'scissors' && computerSelection === 'rock')
   ) {
-    // Player lose
     return Outcomes.lose;
   }
 
-  // Player win
   return Outcomes.win;
 }
 
-function game(e) {
+function playRound(e) {
   let playerSelection = e.target.dataset.choice;
   let computerSelection = getComputerChoice();
-  let outcome = playRound(playerSelection, computerSelection);
+  let outcome = compareChoices(playerSelection, computerSelection);
 
   switch (outcome) {
     case Outcomes.lose:
