@@ -6,6 +6,15 @@ const Outcomes = Object.freeze({
   tie: Symbol('tie'),
 });
 
+let playerScore = 0;
+let computerScore = 0;
+
+let roundResult = document.querySelector('#round-result');
+let playerScoreDisplay = document.querySelector('#player span');
+let computerScoreDisplay = document.querySelector('#computer span');
+
+document.querySelectorAll('button').forEach((item) => item.addEventListener('click', game));
+
 function getComputerChoice() {
   let index = Math.floor(Math.random() * nChoices);
   return choices[index];
@@ -34,37 +43,27 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(e) {
-  let playerScore = 0;
-  let computerScore = 0;
-
   let playerSelection = e.target.dataset.choice;
   let computerSelection = getComputerChoice();
   let outcome = playRound(playerSelection, computerSelection);
 
   switch (outcome) {
     case Outcomes.lose:
-      console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+      roundResult.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
       computerScore++;
       break;
     case Outcomes.win:
-      console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+      roundResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
       playerScore++;
       break;
     case Outcomes.tie:
-      console.log("It's a tie!");
+      roundResult.textContent = "It's a tie!";
       break;
     default:
       console.log(outcome);
       break;
   }
 
-  if (playerScore === computerScore) {
-    console.log(`It's a tie with both scoring ${playerScore}!`);
-  } else {
-    console.log(
-      `The winner is ${playerScore > computerScore ? 'You' : 'Computer'}! The total score is ${playerScore}:${computerScore} (you:computer)!`
-    );
-  }
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
 }
-
-document.querySelectorAll('button').forEach((item) => item.addEventListener('click', game));
